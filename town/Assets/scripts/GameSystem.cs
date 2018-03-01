@@ -7,6 +7,7 @@ public class GameSystem : MonoBehaviour {
 
     public int gameState_editable = 0;
     public GameObject button_edit;
+    public GameObject market;
     private SpriteRenderer gridSp;
     private SpriteRenderer[] tilesSp;
     private GameObject[] tiles;
@@ -14,7 +15,6 @@ public class GameSystem : MonoBehaviour {
     private void Awake()
     {
         gridSp = GameObject.FindGameObjectWithTag("grid").GetComponent<SpriteRenderer>();
-
         tiles = GameObject.FindGameObjectsWithTag("item");
         tilesSp = new SpriteRenderer[tiles.Length];
         for (int i = 0; i < tiles.Length; i++)
@@ -26,6 +26,10 @@ public class GameSystem : MonoBehaviour {
         for (int i = 0; i < tiles.Length; i++)
             tilesSp[i].enabled = false;
 
+        gameState_editable = 0;
+        market.gameObject.SetActive(false);
+
+
     }
 
     public void EditButton()
@@ -34,6 +38,8 @@ public class GameSystem : MonoBehaviour {
         {
             Debug.Log("editable");
             gameState_editable = 1;
+            market.gameObject.SetActive(true);
+
             button_edit.GetComponent<Image>().color = Color.yellow;
             gridSp.enabled = true;
 
@@ -47,6 +53,8 @@ public class GameSystem : MonoBehaviour {
             button_edit.GetComponent<Image>().color = Color.white;
             Debug.Log("noneditable");
             gridSp.enabled = false;
+
+            market.gameObject.SetActive(false);
 
             for (int i = 0; i < tiles.Length; i++)
                 tilesSp[i].enabled = false;

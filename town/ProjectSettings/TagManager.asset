@@ -7,6 +7,7 @@ TagManager:
   - item
   - grid
   - block
+  - market
   layers:
   - Default
   - TransparentFX
