@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Item : MonoBehaviour {
 
-    public GameObject grid;
-    public GameObject tile;
+    public bool isPurchased;
+    public bool isSelected;
+    public bool isFlipped;
 
     void Awake()
     {

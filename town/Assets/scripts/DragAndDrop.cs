@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DragAndDrop : MonoBehaviour {
-
-    //GRID SIZE
-    float size = 1f;
+    
+    private GameSystem gameSystem;
+    private Transform editPanelTrans;
 
     Vector2 basePos;
 
@@ -16,18 +16,25 @@ public class DragAndDrop : MonoBehaviour {
     Vector2 alignedPos;
     float posX;
     float posY;
-
-    private void Awake()
+    public void Awake()
     {
+        //GAME SYSTEM
+        gameSystem = GameObject.Find("GameSystems").GetComponent<GameSystem>();
+
+        //EDIT PANEL TRANSFORM
+        editPanelTrans = gameSystem.editPanel.GetComponent<Transform>();
+
         //Layer Order Sorting
-        gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = (int)Mathf.Abs(gameObject.transform.position.y.Remap(0f, 10f, 10f, 0f));
-    }
+        gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = (int)Mathf.Abs(gameObject.transform.position.y.Remap(-4, 20f, 13f, 0f));
+        
+
+     }
 
 
     private void OnMouseDown()
     {
 
-        if (GameObject.Find("GameSystems").GetComponent<GameSystem>().gameState_editable == 1)
+        if (gameSystem.selectedItem == gameObject)
         {
             //Set Base Position
             basePos = gameObject.transform.position;
@@ -42,7 +49,7 @@ public class DragAndDrop : MonoBehaviour {
 
     private void OnMouseDrag()
     {
-        if (GameObject.Find("GameSystems").GetComponent<GameSystem>().gameState_editable == 1)
+        if (gameSystem.selectedItem == gameObject)
         { 
             //Get Mouse Moving Position
             Vector2 curPos = new Vector2(Input.mousePosition.x - posX, Input.mousePosition.y - posY);
@@ -52,29 +59,33 @@ public class DragAndDrop : MonoBehaviour {
 
             //Set gameObject position and Snapping
             transform.position = Snap(worldPos);
+            editPanelTrans.position = Snap(worldPos);
 
             //Set Layer Order
-            gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = (int)Mathf.Abs(gameObject.transform.position.y.Remap(0f, 10f, 10f, 0f));
+            gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = (int)Mathf.Abs(gameObject.transform.position.y.Remap(-4, 20f, 13f, 0f));
         }
 
     }
 
     private void OnMouseUp()
     {
-        if (GameObject.Find("GameSystems").GetComponent<GameSystem>().gameState_editable == 1)
+        if (gameSystem.selectedItem == gameObject)
         {
             
             //Set gameObject position and Snapping
-            transform.position = Snap(worldPos); ;
+            transform.position = Snap(worldPos); 
+            editPanelTrans.position = Snap(worldPos);
 
             //If <<RED>> -> set to base pos
             SpriteRenderer[] childrenList = this.gameObject.GetComponentsInChildren<SpriteRenderer>();
             if (childrenList[1].color == Color.red)
+            { 
                 transform.position = basePos;
-            
+                editPanelTrans.position = basePos;
+            }
 
             //Set Layer Order
-            gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = (int)Mathf.Abs(gameObject.transform.position.y.Remap(0f, 10f, 10f, 0f));
+            gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = (int)Mathf.Abs(gameObject.transform.position.y.Remap(-4, 20f, 13f, 0f));
             
         }
         

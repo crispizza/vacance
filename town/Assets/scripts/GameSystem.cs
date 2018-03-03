@@ -7,58 +7,75 @@ public class GameSystem : MonoBehaviour {
 
     public int gameState_editable = 0;
     public GameObject button_edit;
-    public GameObject market;
-    private SpriteRenderer gridSp;
-    private SpriteRenderer[] tilesSp;
-    private GameObject[] tiles;
+    public GameObject marketPage;
+    public GameObject editPanel;
+    public GameObject sidePanelLeft;
+    public GameObject sidePanelRight;
+    public SpriteRenderer gridSp;
+    public SpriteRenderer[] tilesSp;
+    public GameObject[] tiles;
+
+    public GameObject selectedItem;
 
     private void Awake()
     {
         gridSp = GameObject.FindGameObjectWithTag("grid").GetComponent<SpriteRenderer>();
+
         tiles = GameObject.FindGameObjectsWithTag("item");
         tilesSp = new SpriteRenderer[tiles.Length];
         for (int i = 0; i < tiles.Length; i++)
+        {
             tilesSp[i] = tiles[i].GetComponent<SpriteRenderer>();
+            tilesSp[i].enabled = false;
+        }
 
         if (gridSp.enabled == true)
             gridSp.enabled = false;
-
-        for (int i = 0; i < tiles.Length; i++)
-            tilesSp[i].enabled = false;
+        
 
         gameState_editable = 0;
-        market.gameObject.SetActive(false);
+        marketPage.gameObject.SetActive(false);
 
 
     }
 
-    public void EditButton()
-    {
-        if (gameState_editable == 0)
-        {
-            Debug.Log("editable");
-            gameState_editable = 1;
-            market.gameObject.SetActive(true);
 
-            button_edit.GetComponent<Image>().color = Color.yellow;
+    public void EditMode(bool flag)
+    {
+        if (flag == true)
+        {
+            sidePanelLeft.SetActive(false);
+            sidePanelRight.SetActive(false);
+
+            gameState_editable = 1;
+            
             gridSp.enabled = true;
 
+            tiles = GameObject.FindGameObjectsWithTag("item");
+            tilesSp = new SpriteRenderer[tiles.Length];
             for (int i = 0; i < tiles.Length; i++)
+            {
+                tilesSp[i] = tiles[i].GetComponent<SpriteRenderer>();
                 tilesSp[i].enabled = true;
-
+            }
         }
-        else if (gameState_editable == 1)
+
+        if (flag == false)
         {
+            sidePanelLeft.SetActive(true);
+            sidePanelRight.SetActive(true);
+
             gameState_editable = 0;
-            button_edit.GetComponent<Image>().color = Color.white;
-            Debug.Log("noneditable");
+
             gridSp.enabled = false;
 
-            market.gameObject.SetActive(false);
-
+            tiles = GameObject.FindGameObjectsWithTag("item");
+            tilesSp = new SpriteRenderer[tiles.Length];
             for (int i = 0; i < tiles.Length; i++)
+            {
+                tilesSp[i] = tiles[i].GetComponent<SpriteRenderer>();
                 tilesSp[i].enabled = false;
-
+            }
         }
     }
 }
