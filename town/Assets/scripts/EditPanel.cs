@@ -17,12 +17,12 @@ public class EditPanel : MonoBehaviour {
     {
         if(gameSystem.selectedItem.GetComponent<Item>().isFlipped == false)
         {
-            gameSystem.selectedItem.transform.localScale = new Vector2(-1f, 1f);
+            gameSystem.selectedItem.transform.localScale = new Vector3(-1f, 1f, 1f);
             gameSystem.selectedItem.GetComponent<Item>().isFlipped = true;
         }
         else
         {
-            gameSystem.selectedItem.transform.localScale = new Vector2(1f, 1f);
+            gameSystem.selectedItem.transform.localScale = new Vector3(1f, 1f, 1f);
             gameSystem.selectedItem.GetComponent<Item>().isFlipped = false;
         }
 
