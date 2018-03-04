@@ -8,7 +8,7 @@ public class DragAndDrop : MonoBehaviour {
     private GameSystem gameSystem;
     private Transform editPanelTrans;
 
-    Vector2 basePos;
+    public Vector2 basePos;
 
     Vector2 dist;
     Vector2 worldPos;
@@ -33,6 +33,13 @@ public class DragAndDrop : MonoBehaviour {
 
     private void OnMouseDown()
     {
+        if(gameSystem.readyToSelect == true && gameSystem.gameState_editable == true)
+        {
+            gameSystem.selectedItem = gameObject;
+            gameSystem.readyToSelect = false;
+            gameSystem.editPanel.SetActive(true);
+            gameSystem.editPanel.transform.position = gameSystem.selectedItem.transform.position;
+        }
 
         if (gameSystem.selectedItem == gameObject)
         {
@@ -49,7 +56,7 @@ public class DragAndDrop : MonoBehaviour {
 
     private void OnMouseDrag()
     {
-        if (gameSystem.selectedItem == gameObject)
+        if (gameSystem.selectedItem == gameObject && gameSystem.gameState_editable == true)
         { 
             //Get Mouse Moving Position
             Vector2 curPos = new Vector2(Input.mousePosition.x - posX, Input.mousePosition.y - posY);
@@ -69,7 +76,7 @@ public class DragAndDrop : MonoBehaviour {
 
     private void OnMouseUp()
     {
-        if (gameSystem.selectedItem == gameObject)
+        if (gameSystem.selectedItem == gameObject && gameSystem.gameState_editable == true)
         {
             
             //Set gameObject position and Snapping

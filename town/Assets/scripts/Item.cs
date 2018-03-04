@@ -5,8 +5,9 @@ using UnityEngine;
 public class Item : MonoBehaviour {
 
     public bool isPurchased;
-    public bool isSelected;
+    //public bool isSelected;
     public bool isFlipped;
+    public bool isSetable;
 
     void Awake()
     {

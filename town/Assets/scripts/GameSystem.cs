@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class GameSystem : MonoBehaviour {
 
-    public int gameState_editable = 0;
+    public bool gameState_editMode;
+    public bool gameState_buildMode;
+    public bool gameState_editable;
     public GameObject button_edit;
     public GameObject marketPage;
     public GameObject editPanel;
@@ -16,6 +18,8 @@ public class GameSystem : MonoBehaviour {
     public GameObject[] tiles;
 
     public GameObject selectedItem;
+    public bool readyToSelect;
+
 
     private void Awake()
     {
@@ -33,7 +37,7 @@ public class GameSystem : MonoBehaviour {
             gridSp.enabled = false;
         
 
-        gameState_editable = 0;
+        gameState_editable = false;
         marketPage.gameObject.SetActive(false);
 
 
@@ -47,7 +51,7 @@ public class GameSystem : MonoBehaviour {
             sidePanelLeft.SetActive(false);
             sidePanelRight.SetActive(false);
 
-            gameState_editable = 1;
+            gameState_editable = true;
             
             gridSp.enabled = true;
 
@@ -65,7 +69,8 @@ public class GameSystem : MonoBehaviour {
             sidePanelLeft.SetActive(true);
             sidePanelRight.SetActive(true);
 
-            gameState_editable = 0;
+            gameState_editable = false;
+            editPanel.SetActive(false);
 
             gridSp.enabled = false;
 

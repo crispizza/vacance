@@ -7,26 +7,38 @@ public class Market : MonoBehaviour {
     private GameSystem gameSystem;
     private GameObject SelectedItem;
 
+    private SoundManager soundManager;
+
     public void Awake()
     {
         gameSystem = GameObject.Find("GameSystems").GetComponent<GameSystem>();
+
+        soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
 
     }
 
     public void Purchase(GameObject item)
     {
-        if(item.GetComponent<Item>().isPurchased == false)
+        if (item.GetComponent<Item>().isPurchased == false)
         {
-        item.transform.position = new Vector2(12f, 5f);
-        gameSystem.editPanel.transform.position = new Vector2(12f, 5f);
-        gameSystem.selectedItem = item;
-        item.gameObject.SetActive(true);
-        gameSystem.editPanel.SetActive(true);
-        gameSystem.editPanel.transform.position = item.transform.position;
-        gameSystem.marketPage.SetActive(false);
+            //SOUND
+            soundManager.Play(soundManager.sound[0]);
 
-        //Edit Mode On
-        gameSystem.EditMode(true);
+            //BUILD MODE
+            gameSystem.gameState_buildMode = true;
+
+            item.transform.position = new Vector2(12f, 5f);        
+            gameSystem.selectedItem = item;
+            item.gameObject.SetActive(true);
+
+            gameSystem.editPanel.transform.position = new Vector2(12f, 5f);
+            gameSystem.editPanel.SetActive(true);
+            gameSystem.editPanel.transform.position = item.transform.position;
+
+            gameSystem.marketPage.SetActive(false);
+
+            //Edit Mode On
+            gameSystem.EditMode(true);
         }
         else
         {
@@ -36,6 +48,9 @@ public class Market : MonoBehaviour {
 
     public void MarketExit()
     {
+        //Sound
+        soundManager.Play(soundManager.sound[0]);
+
         //selectedItem
         gameSystem.selectedItem = null;
 
