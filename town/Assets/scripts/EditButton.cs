@@ -17,23 +17,30 @@ public class EditButton : MonoBehaviour {
 
     public void EditButtonDown()
     {
-        soundManager.Play(soundManager.sound[0]);
 
-        if(gameSystem.gameState_editable == false)
-        { 
+        if (gameSystem.gameState_editable == false)
+        {
+            soundManager.Play(soundManager.sound[0]);
             gameSystem.EditMode(true);
+            gameSystem.bottomRight.SetActive(true);
             gameSystem.readyToSelect = true;
             gameSystem.gameState_editMode = true;
             gameObject.GetComponent<Image>().sprite = sprite[1];
         }
         else
         {
-            gameSystem.EditMode(false);
-            gameSystem.readyToSelect = false;
-            gameSystem.gameState_editMode = false;
-            gameObject.GetComponent<Image>().sprite = sprite[0];
+            if(gameSystem.selectedItem == null)
+            {
+                soundManager.Play(soundManager.sound[0]);
+                gameSystem.EditMode(false);
+                gameSystem.readyToSelect = false;
+                gameSystem.gameState_editMode = false;
+                gameObject.GetComponent<Image>().sprite = sprite[0];
+            }
         }
 
+
+        gameSystem.Save();
 
     }
 }

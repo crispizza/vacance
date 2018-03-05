@@ -13,11 +13,13 @@ public class EditPanel : MonoBehaviour {
         gameSystem = GameObject.Find("GameSystems").GetComponent<GameSystem>();
         soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
 
+
     }
 
     public void FlipButton()
     {
-        if(gameSystem.selectedItem.GetComponent<Item>().isFlipped == false)
+
+        if (gameSystem.selectedItem.GetComponent<Item>().isFlipped == false)
         {
             gameSystem.selectedItem.transform.localScale = new Vector3(-1f, 1f, 1f);
             gameSystem.selectedItem.GetComponent<Item>().isFlipped = true;
@@ -27,11 +29,15 @@ public class EditPanel : MonoBehaviour {
             gameSystem.selectedItem.transform.localScale = new Vector3(1f, 1f, 1f);
             gameSystem.selectedItem.GetComponent<Item>().isFlipped = false;
         }
+        
+        gameSystem.Save();
 
     }
 
     public void SetButton()
-    {   if(gameSystem.selectedItem.GetComponent<Item>().isSetable == true)
+    {
+
+        if (gameSystem.selectedItem.GetComponent<Item>().isSetable == true)
         { 
             //BUILD MODE
             if (gameSystem.gameState_buildMode == true)
@@ -51,12 +57,14 @@ public class EditPanel : MonoBehaviour {
             if(gameSystem.gameState_editMode == true)
             {
                 soundManager.Play(soundManager.sound[0]);
-                gameSystem.selectedItem.GetComponent<Item>().isPurchased = true;
                 gameSystem.editPanel.SetActive(false);
                 gameSystem.selectedItem = null;
                 gameSystem.readyToSelect = true;
             }
         }
+
+
+        gameSystem.Save();
 
     }
 
@@ -85,6 +93,9 @@ public class EditPanel : MonoBehaviour {
             
             
         }
+
+
+        gameSystem.Save();
 
     }
 }

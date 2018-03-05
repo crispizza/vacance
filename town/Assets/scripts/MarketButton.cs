@@ -23,6 +23,8 @@ public class MarketButton : MonoBehaviour {
         //Panel Hide
         gameSystem.sidePanelLeft.SetActive(false);
         gameSystem.sidePanelRight.SetActive(false);
+        gameSystem.bottomLeft.SetActive(false);
+        gameSystem.bottomRight.SetActive(false);
 
 
 

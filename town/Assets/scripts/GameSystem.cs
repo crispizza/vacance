@@ -13,7 +13,10 @@ public class GameSystem : MonoBehaviour {
     public GameObject editPanel;
     public GameObject sidePanelLeft;
     public GameObject sidePanelRight;
+    public GameObject bottomLeft;
+    public GameObject bottomRight;
     public SpriteRenderer gridSp;
+
     public SpriteRenderer[] tilesSp;
     public GameObject[] tiles;
 
@@ -23,6 +26,8 @@ public class GameSystem : MonoBehaviour {
 
     private void Awake()
     {
+        Load();
+
         gridSp = GameObject.FindGameObjectWithTag("grid").GetComponent<SpriteRenderer>();
 
         tiles = GameObject.FindGameObjectsWithTag("item");
@@ -42,7 +47,7 @@ public class GameSystem : MonoBehaviour {
 
 
     }
-
+    
 
     public void EditMode(bool flag)
     {
@@ -50,6 +55,8 @@ public class GameSystem : MonoBehaviour {
         {
             sidePanelLeft.SetActive(false);
             sidePanelRight.SetActive(false);
+            bottomLeft.SetActive(false);
+            bottomRight.SetActive(false);
 
             gameState_editable = true;
             
@@ -68,6 +75,8 @@ public class GameSystem : MonoBehaviour {
         {
             sidePanelLeft.SetActive(true);
             sidePanelRight.SetActive(true);
+            bottomLeft.SetActive(true);
+            bottomRight.SetActive(true);
 
             gameState_editable = false;
             editPanel.SetActive(false);
@@ -83,4 +92,77 @@ public class GameSystem : MonoBehaviour {
             }
         }
     }
+
+    public void Save()
+    {
+        GameObject[] list;
+        list = GameObject.FindGameObjectsWithTag("Item");
+
+        for(int i = 0; i < list.Length; i++)
+        {
+            Debug.Log("SAVE name:" +list[i].name + " x:" + list[i].transform.position.x + " y:" + list[i].transform.position.y + " pur:" + list[i].GetComponent<Item>().isPurchased.ToString() + " flip"+list[i].GetComponent<Item>().isFlipped.ToString());
+            //Item.transform.position
+            PlayerPrefs.SetFloat(list[i].name + "_posX", list[i].transform.position.x);
+            PlayerPrefs.SetFloat(list[i].name + "_posY", list[i].transform.position.y);
+            //Item.isPurchased
+            PlayerPrefs.SetString(list[i].name + "_isPurchased", list[i].GetComponent<Item>().isPurchased.ToString());
+            //Item.isFlipped
+            PlayerPrefs.SetString(list[i].name + "_isFlipped", list[i].GetComponent<Item>().isFlipped.ToString());
+        }
+
+
+
+    }
+
+    public void Load()
+    {
+        GameObject[] list;
+        list = GameObject.FindGameObjectsWithTag("Item");
+
+        for (int i = 0; i < list.Length; i++)
+        {
+            //Item.transform.position
+            list[i].transform.position = new Vector2(PlayerPrefs.GetFloat(list[i].name + "_posX"), PlayerPrefs.GetFloat(list[i].name + "_posY"));
+            //Item.isPurchased
+            list[i].GetComponent<Item>().isPurchased = System.Convert.ToBoolean(PlayerPrefs.GetString(list[i].name + "_isPurchased"));
+            
+            //Item.isFlipped
+            list[i].GetComponent<Item>().isFlipped = System.Convert.ToBoolean(PlayerPrefs.GetString(list[i].name + "_isFlipped"));
+            Debug.Log("LOAD name:" + list[i].name + " x:" + list[i].transform.position.x + " y:" + list[i].transform.position.y + " pur:" + list[i].GetComponent<Item>().isPurchased.ToString() + " flip:" + list[i].GetComponent<Item>().isFlipped.ToString());
+            if (list[i].GetComponent<Item>().isPurchased == false)
+                list[i].transform.position = new Vector2(60f, 0f);
+
+        }
+    }
+    
+    public void LoadDefault()
+    {
+        GameObject[] list;
+        list = GameObject.FindGameObjectsWithTag("Item");
+
+        for (int i = 0; i < list.Length; i++)
+        {
+            //Item.transform.position
+            if (list[i].name != "Office")
+                list[i].transform.position = new Vector2(12f, 5f);
+            else
+                list[i].transform.position = new Vector2(26f, 4f);
+            //Item.isPurchased
+            if (list[i].name != "Office")
+                list[i].GetComponent<Item>().isPurchased = false;
+            else
+                list[i].GetComponent<Item>().isPurchased = true;
+
+            //Item.isFlipped
+            list[i].GetComponent<Item>().isFlipped = false;
+
+            if (list[i].GetComponent<Item>().isPurchased == false)
+            {
+                if (list[i].name != "Office")
+                    list[i].transform.position = new Vector2(60f,0f);
+            }
+            Debug.Log("LOAD DEFAULT");
+        }
+    }
+
 }

@@ -9,6 +9,7 @@ TagManager:
   - block
   - market
   - sidePanel
+  - Item
   layers:
   - Default
   - TransparentFX
