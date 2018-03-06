@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 13edf4dffa3e421418e7d6aaf081ed89
+timeCreated: 1520329043
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Haan YGodic 250
+  fontNames:
+  - Haan YGodic 250
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
