@@ -26,7 +26,7 @@ public class GameSystem : MonoBehaviour {
 
     private void Awake()
     {
-        Load();
+        //Load();
 
         gridSp = GameObject.FindGameObjectWithTag("grid").GetComponent<SpriteRenderer>();
 
