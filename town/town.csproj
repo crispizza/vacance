@@ -226,6 +226,7 @@
     <Compile Include="Assets\scripts\EditButton.cs" />
     <Compile Include="Assets\scripts\EditPanel.cs" />
     <Compile Include="Assets\scripts\GameManagerLobby.cs" />
+    <Compile Include="Assets\scripts\GameManagerTitle.cs" />
     <Compile Include="Assets\scripts\GameSystem.cs" />
     <Compile Include="Assets\scripts\Item.cs" />
     <Compile Include="Assets\scripts\Market.cs" />

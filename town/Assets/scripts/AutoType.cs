@@ -7,9 +7,13 @@ public class AutoType : MonoBehaviour {
     
     private float delay = 0.05f;
     private float baseDelay;
-    private bool isClicked = false;
+
+    
+    private bool isClickedOnAnywhere = false;
+    private bool isClickedOnBalloon = false;
     public string[] fullText;
     public string currentText = "";
+
 
     public Text textComp;
     public AudioSource audioSource;
@@ -42,39 +46,63 @@ public class AutoType : MonoBehaviour {
      
             for (int i = 0; i <= fullText[k].Length; i++)
             {
+                 
                 currentText = fullText[k].Substring(0, i);
                 textComp.text = currentText;
                 audioSource.Play();
+
+                if(isClickedOnBalloon == true)
+                {
+                    currentText = fullText[k];
+                    textComp.text = currentText;
+                    i = fullText[k].Length;
+                    yield return new WaitUntil(() => isClickedOnAnywhere == false);
+                    yield return new WaitUntil(() => isClickedOnAnywhere == true);
+
+                }
                 yield return new WaitForSeconds(delay);
             }
 
-            yield return new WaitUntil(() => isClicked == true);
+            yield return new WaitUntil(() => isClickedOnAnywhere == true);
 
         }
 
-        yield return new WaitUntil(() => isClicked == true);
+        yield return new WaitUntil(() => isClickedOnAnywhere == true);
 
         GameManagerLobby.GetGameManager().Fade();
 
     }
 
 
-     private void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0) == true)
         {       
-            isClicked = true;
+            isClickedOnAnywhere = true;
             delay = delay / 5f;
         }
 
         if (Input.GetMouseButtonUp(0) == true)
         {
-            isClicked = false;
+            isClickedOnAnywhere = false;
             delay = baseDelay;
         }
+     
+
+    }
+    
+
+    private void OnMouseDown()
+    {
+        isClickedOnBalloon = true;
     }
 
-    
+    private void OnMouseUp()
+    {
+        isClickedOnBalloon = false;
+    }
+
+
 
 }
 
