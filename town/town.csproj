@@ -219,6 +219,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\scripts\AndroidManager.cs" />
     <Compile Include="Assets\scripts\AutoType.cs" />
     <Compile Include="Assets\scripts\BGMManager.cs" />
     <Compile Include="Assets\scripts\CameraMovement.cs" />
