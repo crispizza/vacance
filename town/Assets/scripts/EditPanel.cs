@@ -18,6 +18,7 @@ public class EditPanel : MonoBehaviour {
 
     public void FlipButton()
     {
+        soundManager.Play(soundManager.sound[0]);
 
         if (gameSystem.selectedItem.GetComponent<Item>().isFlipped == false)
         {
@@ -30,7 +31,7 @@ public class EditPanel : MonoBehaviour {
             gameSystem.selectedItem.GetComponent<Item>().isFlipped = false;
         }
         
-        gameSystem.Save();
+        //gameSystem.Save();
 
     }
 
@@ -44,6 +45,7 @@ public class EditPanel : MonoBehaviour {
             {
                 soundManager.Play(soundManager.sound[1]);
                 soundManager.Play(soundManager.sound[2]);
+                soundManager.Play(soundManager.sound[0]);
 
                 gameSystem.selectedItem.GetComponent<Item>().isPurchased = true;
                 gameSystem.editPanel.SetActive(false);
@@ -64,7 +66,7 @@ public class EditPanel : MonoBehaviour {
         }
 
 
-        gameSystem.Save();
+        //gameSystem.Save();
 
     }
 
@@ -95,7 +97,7 @@ public class EditPanel : MonoBehaviour {
         }
 
 
-        gameSystem.Save();
+        //gameSystem.Save();
 
     }
 }

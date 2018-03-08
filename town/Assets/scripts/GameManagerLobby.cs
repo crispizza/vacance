@@ -28,7 +28,6 @@ public class GameManagerLobby : MonoBehaviour {
     public GameObject merrySnow;
     public GameObject skipButton;
     public GameObject tutorialArrow;
-    
 
 
     private void Awake()
@@ -36,6 +35,7 @@ public class GameManagerLobby : MonoBehaviour {
         merrySnow.GetComponent<BoxCollider2D>().enabled = false;
     }
 
+   
 
     public void SkipButton()
     {

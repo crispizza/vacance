@@ -9,7 +9,10 @@ public class AutoType : MonoBehaviour {
     private float baseDelay;
     private bool isClicked = false;
     public string[] fullText;
-    private string currentText = "";
+    public string currentText = "";
+
+    public Text textComp;
+    public AudioSource audioSource;
 
 
     private void Start()
@@ -40,8 +43,8 @@ public class AutoType : MonoBehaviour {
             for (int i = 0; i <= fullText[k].Length; i++)
             {
                 currentText = fullText[k].Substring(0, i);
-                this.GetComponent<Text>().text = currentText;
-                this.GetComponent<AudioSource>().Play();
+                textComp.text = currentText;
+                audioSource.Play();
                 yield return new WaitForSeconds(delay);
             }
 
@@ -56,10 +59,10 @@ public class AutoType : MonoBehaviour {
     }
 
 
-    private void Update()
+     private void Update()
     {
         if (Input.GetMouseButtonDown(0) == true)
-        {
+        {       
             isClicked = true;
             delay = delay / 5f;
         }
@@ -71,6 +74,7 @@ public class AutoType : MonoBehaviour {
         }
     }
 
+    
 
 }
 

@@ -27,12 +27,14 @@ public class DragAndDrop : MonoBehaviour {
         //Layer Order Sorting
         gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = (int)Mathf.Abs(gameObject.transform.position.y.Remap(-4, 20f, 13f, 0f));
         
+        basePos = gameObject.transform.position;
 
      }
 
 
     private void OnMouseDown()
     {
+
         if(gameSystem.readyToSelect == true && gameSystem.gameState_editable == true)
         {
             gameSystem.selectedItem = gameObject;
@@ -50,6 +52,7 @@ public class DragAndDrop : MonoBehaviour {
             dist = Camera.main.WorldToScreenPoint(transform.position);
             posX = Input.mousePosition.x - dist.x;
             posY = Input.mousePosition.y - dist.y;
+
         }
 
     }

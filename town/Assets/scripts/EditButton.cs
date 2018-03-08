@@ -17,7 +17,6 @@ public class EditButton : MonoBehaviour {
 
     public void EditButtonDown()
     {
-
         if (gameSystem.gameState_editable == false)
         {
             soundManager.Play(soundManager.sound[0]);
@@ -38,9 +37,7 @@ public class EditButton : MonoBehaviour {
                 gameObject.GetComponent<Image>().sprite = sprite[0];
             }
         }
-
-
-        gameSystem.Save();
+        //gameSystem.Save();
 
     }
 }

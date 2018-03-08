@@ -26,7 +26,7 @@ public class GameSystem : MonoBehaviour {
 
     private void Awake()
     {
-        //Load();
+        //LoadDefault();
 
         gridSp = GameObject.FindGameObjectWithTag("grid").GetComponent<SpriteRenderer>();
 
@@ -92,7 +92,7 @@ public class GameSystem : MonoBehaviour {
             }
         }
     }
-
+    /*
     public void Save()
     {
         GameObject[] list;
@@ -164,5 +164,6 @@ public class GameSystem : MonoBehaviour {
             Debug.Log("LOAD DEFAULT");
         }
     }
+    */
 
 }

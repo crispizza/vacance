@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour {
 
+    /*
     Vector2 xLimitation = new Vector2(6f, 14f);
     Vector2 yLimitation = new Vector2(-5f, 15f);
 
@@ -30,10 +31,10 @@ public class CameraMovement : MonoBehaviour {
         transform.Translate(move, Space.World);
 
         
-
+    
 
 
 
     }
-
+    */
 }
