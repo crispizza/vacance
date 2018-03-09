@@ -4,37 +4,59 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour {
 
-    /*
-    Vector2 xLimitation = new Vector2(6f, 14f);
-    Vector2 yLimitation = new Vector2(-5f, 15f);
+    public Transform left;
+    public Transform right;
+    public Transform bottom;
+    public Transform top;
 
-
-    public float dragSpeed;
+    private float dragSpeed = 20f;
     private Vector2 dragOrigin;
 
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            dragOrigin = Input.mousePosition;
-            return;
-        }
+        if(GameSystem.GetGameSystem().selectedItem == null)
+        { 
+            if (Input.GetMouseButtonDown(0))
+            {
+                dragOrigin = Input.mousePosition;
+                return;
+            }
 
-        if (!Input.GetMouseButton(0)) return;
+            if (!Input.GetMouseButton(0)) return;
 
-        Vector2 pos = Camera.main.ScreenToViewportPoint((Vector2)Input.mousePosition - dragOrigin);
-        Vector2 move = new Vector2(pos.x * dragSpeed, pos.y * dragSpeed);
+            Vector2 pos = Camera.main.ScreenToViewportPoint((Vector2)Input.mousePosition - dragOrigin);
+            Vector2 move = new Vector2(-1 * pos.x * dragSpeed, -1 * pos.y * dragSpeed);
         
-        
-        
-        transform.Translate(move, Space.World);
 
-        
+           
+            if (move.x < 0) 
+            {
+                if (left.position.x < -25f)
+                    move.x = 0f;
+            }
+
+            if (move.x > 0)
+            {
+                if (right.position.x > 45f) 
+                    move.x = 0f;
+            }
     
+            if (move.y < 0)
+            {
+                if (bottom.position.y < -22f)
+                    move.y = 0;
+            }
 
+            if (move.y > 0)
+            {
+                if (top.position.y > 32f)
+                    move.y = 0;
+            }
 
-
+        
+        
+            transform.Translate(move, Space.World);
+        }
     }
-    */
 }

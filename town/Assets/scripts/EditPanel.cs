@@ -44,10 +44,12 @@ public class EditPanel : MonoBehaviour {
             if (gameSystem.gameState_buildMode == true)
             {
                 soundManager.Play(soundManager.sound[1]);
-                soundManager.Play(soundManager.sound[2]);
                 soundManager.Play(soundManager.sound[0]);
 
                 gameSystem.selectedItem.GetComponent<Item>().isPurchased = true;
+                gameSystem.selectedItem.GetComponent<Item>().isUnderConstruction = true;
+                gameSystem.selectedItem.GetComponent<Item>().spriteRenderer.sprite = gameSystem.constructionSprite;
+
                 gameSystem.editPanel.SetActive(false);
                 gameSystem.selectedItem = null;
                 gameSystem.EditMode(false);

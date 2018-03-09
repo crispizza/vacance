@@ -31,7 +31,7 @@ public class AndroidManager : MonoBehaviour {
             if (Input.GetKey(KeyCode.Escape))
             {
                 
-                //Application.Quit();
+                Application.Quit();
             }
         
     }

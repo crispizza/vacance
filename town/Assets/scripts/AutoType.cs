@@ -11,6 +11,7 @@ public class AutoType : MonoBehaviour {
     
     private bool isClickedOnAnywhere = false;
     private bool isClickedOnBalloon = false;
+    private bool isWaiting = false;
     public string[] fullText;
     public string currentText = "";
 
@@ -42,31 +43,32 @@ public class AutoType : MonoBehaviour {
     {
 
         for (int k = 0; k < fullText.Length; k ++)
-        { 
-     
+        {
+
             for (int i = 0; i <= fullText[k].Length; i++)
             {
-                 
+                isWaiting = false;
                 currentText = fullText[k].Substring(0, i);
                 textComp.text = currentText;
-                audioSource.Play();
-
-                if(isClickedOnBalloon == true)
+                //audioSource.Play();
+                yield return new WaitForSeconds(delay);
+                
+                if (isClickedOnAnywhere == true && isWaiting == false)
                 {
+                    isWaiting = false;
                     currentText = fullText[k];
                     textComp.text = currentText;
-                    i = fullText[k].Length;
+                    i = fullText[k].Length - 1;
                     yield return new WaitUntil(() => isClickedOnAnywhere == false);
-                    yield return new WaitUntil(() => isClickedOnAnywhere == true);
-
                 }
-                yield return new WaitForSeconds(delay);
+                
             }
-
+            isWaiting = true;
             yield return new WaitUntil(() => isClickedOnAnywhere == true);
+            yield return new WaitUntil(() => isClickedOnAnywhere == false);
 
         }
-
+        isWaiting = true;
         yield return new WaitUntil(() => isClickedOnAnywhere == true);
 
         GameManagerLobby.GetGameManager().Fade();
@@ -76,7 +78,7 @@ public class AutoType : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) == true)
+        if (Input.GetMouseButton(0) == true)
         {       
             isClickedOnAnywhere = true;
             delay = delay / 5f;

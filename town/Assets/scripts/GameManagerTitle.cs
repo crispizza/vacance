@@ -14,7 +14,7 @@ public class GameManagerTitle : MonoBehaviour {
 
         if (Input.GetMouseButtonUp(0) == true)
         {
-            SceneManager.LoadScene("lobby");
+            SceneManager.LoadScene("prologue");
         }
 
 

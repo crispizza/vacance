@@ -33,6 +33,7 @@ public class GameManagerLobby : MonoBehaviour {
     private void Awake()
     {
         merrySnow.GetComponent<BoxCollider2D>().enabled = false;
+        tutorialArrow.SetActive(false);
     }
 
     public void SkipButton()

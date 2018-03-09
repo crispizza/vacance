@@ -4,12 +4,28 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameSystem : MonoBehaviour {
+    private static GameSystem gameSystem;
+
+    public static GameSystem GetGameSystem()
+    {
+        if (gameSystem == null)
+        {
+            gameSystem = FindObjectOfType<GameSystem>();
+            if (gameSystem == null)
+            {
+                GameObject container = new GameObject("Game System Clone");
+                gameSystem = container.GetComponent<GameSystem>();
+            }
+        }
+        return gameSystem;
+    }
 
     public bool gameState_editMode;
     public bool gameState_buildMode;
     public bool gameState_editable;
     public GameObject button_edit;
     public GameObject marketPage;
+    public GameObject cabinet;
     public GameObject editPanel;
     public GameObject sidePanelLeft;
     public GameObject sidePanelRight;
@@ -22,6 +38,9 @@ public class GameSystem : MonoBehaviour {
 
     public GameObject selectedItem;
     public bool readyToSelect;
+
+    public Sprite constructionSprite;
+    public GameObject fastConstructionQuestion; 
 
 
     private void Awake()
