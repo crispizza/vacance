@@ -317,6 +317,7 @@
     <Compile Include="Assets\scripts\Market.cs" />
     <Compile Include="Assets\scripts\MarketButton.cs" />
     <Compile Include="Assets\scripts\MerrySnow.cs" />
+    <Compile Include="Assets\scripts\PedtClearCaching.cs" />
     <Compile Include="Assets\scripts\PinchZoom.cs" />
     <Compile Include="Assets\scripts\PrologueManager.cs" />
     <Compile Include="Assets\scripts\SoundManager.cs" />
