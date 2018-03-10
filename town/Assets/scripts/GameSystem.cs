@@ -40,7 +40,16 @@ public class GameSystem : MonoBehaviour {
     public bool readyToSelect;
 
     public Sprite constructionSprite;
-    public GameObject fastConstructionQuestion; 
+    public GameObject fastConstructionQuestion;
+
+    public GameObject tutorial;
+
+    public bool cameraMovable = true;
+
+    public GameObject treeAndFlowers;
+    public GameObject beds;
+
+
 
 
     private void Awake()
@@ -63,7 +72,7 @@ public class GameSystem : MonoBehaviour {
 
         gameState_editable = false;
         marketPage.gameObject.SetActive(false);
-
+        tutorial.SetActive(true);
 
     }
     

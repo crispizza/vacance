@@ -6,11 +6,12 @@ public class MarketButton : MonoBehaviour {
 
     private GameSystem gameSystem;
     private SoundManager soundManager;
+    
 
     public void Awake()
     {
         gameSystem = GameObject.Find("GameSystems").GetComponent<GameSystem>();
-        soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
+        soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();       
     }
 
     public void MarketButtonDown()
@@ -25,9 +26,11 @@ public class MarketButton : MonoBehaviour {
         gameSystem.sidePanelRight.SetActive(false);
         gameSystem.bottomLeft.SetActive(false);
         gameSystem.bottomRight.SetActive(false);
-
-
+        
 
 
     }
+    
+    
+
 }

@@ -6,8 +6,14 @@ public class Cabinet : MonoBehaviour {
 
     public void SetItem(GameObject item)
     {
+        if(GameSystem.GetGameSystem().tutorial.GetComponent<Tutorial>().isOn == true)
+        {
+            item.GetComponent<Item>().isPurchased = true;
+        }
+
         if (item.GetComponent<Item>().isPurchased == true)
         {
+
             //SOUND
             SoundManager.GetSoundManager().Play(SoundManager.GetSoundManager().sound[0]);
 
@@ -29,7 +35,7 @@ public class Cabinet : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Already Purchased");
+            Debug.Log("Not Purchased");
         }
     }
 

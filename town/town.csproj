@@ -321,6 +321,7 @@
     <Compile Include="Assets\scripts\PrologueManager.cs" />
     <Compile Include="Assets\scripts\SoundManager.cs" />
     <Compile Include="Assets\scripts\TileCol.cs" />
+    <Compile Include="Assets\scripts\Tutorial.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\대사.txt" />

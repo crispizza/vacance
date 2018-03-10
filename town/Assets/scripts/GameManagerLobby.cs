@@ -45,8 +45,7 @@ public class GameManagerLobby : MonoBehaviour {
         arrowObj.SetActive(false);
         MaskObj.SetActive(false);
         merrySnow.GetComponent<BoxCollider2D>().enabled = true;
-        tutorialArrow.SetActive(true);
-
+        StartCoroutine(TutorialArrowAppear("skip"));
     }
 
     public void Fade()
@@ -54,16 +53,18 @@ public class GameManagerLobby : MonoBehaviour {
         skipButton.SetActive(false);
         rachelObj.GetComponent<Animator>().Play("Fade Out");
         balloonObj.GetComponent<Animator>().Play("Fade Out");
-        textObj.GetComponent<Animator>().Play("Text Out");
+        textObj.GetComponent<Animator>().Play("Fade Out");
         arrowObj.GetComponent<Animator>().Play("Fade Out");
-        MaskObj.GetComponent<Animator>().Play("Mask Out");
+        MaskObj.GetComponent<Animator>().Play("Fade Out");
         merrySnow.GetComponent<BoxCollider2D>().enabled = true;
-        StartCoroutine(TutorialArrowAppear());
+        StartCoroutine(TutorialArrowAppear("fade"));
     }
 
-    IEnumerator TutorialArrowAppear()
+    IEnumerator TutorialArrowAppear(string type)
     {
-        yield return new WaitForSeconds(1f);
+        if(type == "fade")
+            yield return new WaitForSeconds(.8f);
         tutorialArrow.SetActive(true);
+        tutorialArrow.GetComponent<Animator>().Play("Up Down");
     }
 }

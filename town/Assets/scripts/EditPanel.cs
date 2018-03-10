@@ -38,11 +38,25 @@ public class EditPanel : MonoBehaviour {
     public void SetButton()
     {
 
+       
         if (gameSystem.selectedItem.GetComponent<Item>().isSetable == true)
         { 
             //BUILD MODE
             if (gameSystem.gameState_buildMode == true)
             {
+                if (GameSystem.GetGameSystem().tutorial.GetComponent<Tutorial>().isOn)
+                {
+                    if (gameSystem.selectedItem.name == "hotel" || gameSystem.selectedItem.name == "Hotel")
+                    {
+                        gameSystem.tutorial.GetComponent<Tutorial>().monkeyHotelSet = true;
+                    }
+
+                    if (gameSystem.selectedItem.name == "cafe" || gameSystem.selectedItem.name == "Cafe")
+                    {
+                        GameSystem.GetGameSystem().tutorial.GetComponent<Tutorial>().hotChocoCafe = true;
+                    }
+
+                }
                 soundManager.Play(soundManager.sound[1]);
                 soundManager.Play(soundManager.sound[0]);
 
@@ -60,10 +74,21 @@ public class EditPanel : MonoBehaviour {
             //EDIT MODE
             if(gameSystem.gameState_editMode == true)
             {
+
+                if (GameSystem.GetGameSystem().tutorial.GetComponent<Tutorial>().isOn)
+                {
+                    if (gameSystem.selectedItem.name == "cafe" || gameSystem.selectedItem.name == "Cafe")
+                    {
+                        GameSystem.GetGameSystem().tutorial.GetComponent<Tutorial>().hotChocoCafe = true;
+                    }
+                    
+                }
                 soundManager.Play(soundManager.sound[0]);
                 gameSystem.editPanel.SetActive(false);
                 gameSystem.selectedItem = null;
                 gameSystem.readyToSelect = true;
+
+
             }
         }
 
@@ -74,6 +99,13 @@ public class EditPanel : MonoBehaviour {
 
     public void CancelButton()
     {
+        if (GameSystem.GetGameSystem().tutorial.GetComponent<Tutorial>().isOn == true)
+        {
+            SoundManager.GetSoundManager().Play(SoundManager.GetSoundManager().sound[3]);
+            return;
+        }
+
+
 
         if (gameSystem.gameState_buildMode == true)
         {
@@ -93,9 +125,7 @@ public class EditPanel : MonoBehaviour {
             gameSystem.selectedItem.transform.position = gameSystem.selectedItem.GetComponent<DragAndDrop>().basePos;
             gameSystem.editPanel.SetActive(false);
             gameSystem.selectedItem = null;
-            gameSystem.readyToSelect = true;
-            
-            
+            gameSystem.readyToSelect = true;            
         }
 
 

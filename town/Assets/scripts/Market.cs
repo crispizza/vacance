@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Market : MonoBehaviour {
-
+    
     private GameSystem gameSystem;
     private GameObject SelectedItem;
+
+    public GameObject treesAndFlowers;
+    public GameObject beds;
+
 
     private SoundManager soundManager;
 
     public void Awake()
     {
+        treesAndFlowers.SetActive(true);
+        beds.SetActive(false);
+
         gameSystem = GameObject.Find("GameSystems").GetComponent<GameSystem>();
 
         soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
@@ -48,6 +55,11 @@ public class Market : MonoBehaviour {
 
     public void MarketExit()
     {
+        if (gameSystem.tutorial.GetComponent<Tutorial>().isOn == true)
+        {
+            return;
+        }
+
         //Sound
         soundManager.Play(soundManager.sound[0]);
 
@@ -63,4 +75,27 @@ public class Market : MonoBehaviour {
         //Edit Mode off
         gameSystem.EditMode(false);
     }
+
+    public void BedButton()
+    {
+        gameSystem.beds.SetActive(true);
+        gameSystem.treeAndFlowers.SetActive(false);
+        
+
+    }
+
+    public void TreeAndFlowersButton()
+    {
+        if (gameSystem.tutorial.GetComponent<Tutorial>().isOn == true)
+        {
+            SoundManager.GetSoundManager().Play(SoundManager.GetSoundManager().sound[3]);
+            return;
+        }
+
+        gameSystem.treeAndFlowers.SetActive(true);
+        gameSystem.beds.SetActive(false);
+
+    }
+
+   
 }

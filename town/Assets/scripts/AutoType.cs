@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class AutoType : MonoBehaviour {
     
-    private float delay = 0.05f;
+    private float delay = 0.035f;
     private float baseDelay;
 
     
