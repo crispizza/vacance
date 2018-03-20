@@ -17,10 +17,12 @@ public class EditButton : MonoBehaviour {
 
     public void EditButtonDown()
     {
+        /*
         if (gameSystem.tutorial.GetComponent<Tutorial>().isOn == true)
         {
             return;
         }
+        */
 
         if (gameSystem.gameState_editable == false)
         {

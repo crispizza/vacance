@@ -55,10 +55,7 @@ public class Market : MonoBehaviour {
 
     public void MarketExit()
     {
-        if (gameSystem.tutorial.GetComponent<Tutorial>().isOn == true)
-        {
-            return;
-        }
+        
 
         //Sound
         soundManager.Play(soundManager.sound[0]);

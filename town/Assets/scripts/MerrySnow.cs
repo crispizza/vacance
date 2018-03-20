@@ -15,7 +15,7 @@ public class MerrySnow : MonoBehaviour {
     private void OnMouseUp()
     {
         gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-        SceneManager.LoadScene ("main");
+        SceneManager.LoadScene ("Loading");
         
     }
 

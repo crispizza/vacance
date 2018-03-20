@@ -310,6 +310,7 @@
     <Compile Include="Assets\scripts\EditButton.cs" />
     <Compile Include="Assets\scripts\EditPanel.cs" />
     <Compile Include="Assets\scripts\FastConstructionQuest.cs" />
+    <Compile Include="Assets\scripts\GameManagerLoading.cs" />
     <Compile Include="Assets\scripts\GameManagerLobby.cs" />
     <Compile Include="Assets\scripts\GameManagerTitle.cs" />
     <Compile Include="Assets\scripts\GameSystem.cs" />
@@ -317,12 +318,12 @@
     <Compile Include="Assets\scripts\Market.cs" />
     <Compile Include="Assets\scripts\MarketButton.cs" />
     <Compile Include="Assets\scripts\MerrySnow.cs" />
-    <Compile Include="Assets\scripts\PedtClearCaching.cs" />
     <Compile Include="Assets\scripts\PinchZoom.cs" />
     <Compile Include="Assets\scripts\PrologueManager.cs" />
     <Compile Include="Assets\scripts\SoundManager.cs" />
     <Compile Include="Assets\scripts\TileCol.cs" />
     <Compile Include="Assets\scripts\Tutorial.cs" />
+    <Compile Include="Assets\scripts\TutorialFinish.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\대사.txt" />

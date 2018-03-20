@@ -13,7 +13,10 @@ public class Cabinet : MonoBehaviour {
 
         if (item.GetComponent<Item>().isPurchased == true)
         {
-
+            if (item.name == "Cafe")
+            { 
+                GameSystem.GetGameSystem().tutorial.GetComponent<Tutorial>().touchCafe = true;
+            }
             //SOUND
             SoundManager.GetSoundManager().Play(SoundManager.GetSoundManager().sound[0]);
 

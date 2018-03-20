@@ -24,6 +24,7 @@ public class GameSystem : MonoBehaviour {
     public bool gameState_buildMode;
     public bool gameState_editable;
     public GameObject button_edit;
+    public GameObject editButton;
     public GameObject marketPage;
     public GameObject cabinet;
     public GameObject editPanel;
@@ -48,6 +49,9 @@ public class GameSystem : MonoBehaviour {
 
     public GameObject treeAndFlowers;
     public GameObject beds;
+    public GameObject tutorialFinish;
+
+    public GameObject hotel;
 
 
 
@@ -98,7 +102,7 @@ public class GameSystem : MonoBehaviour {
                 tilesSp[i].enabled = true;
             }
         }
-
+        
         if (flag == false)
         {
             sidePanelLeft.SetActive(true);
@@ -120,6 +124,7 @@ public class GameSystem : MonoBehaviour {
             }
         }
     }
+
     /*
     public void Save()
     {

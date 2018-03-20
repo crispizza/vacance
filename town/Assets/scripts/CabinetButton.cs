@@ -11,6 +11,10 @@ public class CabinetButton : MonoBehaviour {
             SoundManager.GetSoundManager().Play(SoundManager.GetSoundManager().sound[3]);
         }
 
+        if(GameSystem.GetGameSystem().tutorial.GetComponent<Tutorial>().isOn)
+        {
+            GameSystem.GetGameSystem().tutorial.GetComponent<Tutorial>().cabinetTouch = true;
+        }
 
         SoundManager.GetSoundManager().Play(SoundManager.GetSoundManager().sound[0]);
 
